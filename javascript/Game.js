@@ -10,13 +10,15 @@ class Game {
     //2.el submarinista
     this.submarinista = new Submarinista();
     console.log(this.submarinista);
+    
+    
 
     //3. las medusas
     //this.medusa = new Medusas()
     this.medusaArr = [];
 
     //4.la bombona
-    //this.oxigen = new Oxygen()
+    //this.oxigen = new Oxygen() 
 
     //5.el contador
     //6.boton de pausa?
@@ -26,7 +28,8 @@ class Game {
 
   medusasAparecen = () => {
     // metodo que determina cuando deberia aparecer una medusa
-    if (this.medusaArr.length === 0) {
+    if (this.medusaArr.length < 15  && Math.random() < 0.0035) {
+      // si hay menos de 15 medusas y si el numero aleatorio entre 0-1 es 0.002 aparezcan
       let newMedusa = new Medusas();
       this.medusaArr.push(newMedusa);
     }
@@ -56,9 +59,12 @@ class Game {
     this.medusaArr.forEach((eachMedusa) => {
       eachMedusa.medusasCollisionCanvas();
     });
+    
+    
+    //this.submarinistaCollisionCanvas();
     // queremos dibujar todas las medusas del array y mover todas las del array
     //this.medusa.move()
-
+    
     //this.submarinista.right()
     //this.submarinista.left()
     //this.submarinista.up()
@@ -70,7 +76,7 @@ class Game {
     //this.oxigen.draw()
     //this.medusa.draw()
     this.medusaArr.forEach((eachMedusa) => {
-      eachMedusa.draw();
+      eachMedusa.draw()
     });
 
     //4.Recursion
