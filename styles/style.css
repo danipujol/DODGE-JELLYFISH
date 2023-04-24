@@ -1,0 +1,43 @@
+#my-canvas{
+    background-color: aquamarine;
+}
+
+
+#my-canvas, #gameover-screen {
+    display: none;
+}
+
+
+#splash-screen{
+    background-image: url("/images/portada/PORTADA2.jpg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 600px;
+    width: 850px;         
+}
+
+
+#start-btn{
+  background-color: blue;
+  color: white;
+  padding: 25px;
+  font-size: 20px;
+  margin-top: 5%;
+  border-radius: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button{
+    position: fixed;
+    display: flex;
+    text-align: center;
+    cursor: pointer;
+    top: 30%;
+    left: 23%;
+}
+
+
+
+

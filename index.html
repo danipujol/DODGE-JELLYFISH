@@ -1,12 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DODGE JELLYFISH</title>
+    <link rel="stylesheet" href="./styles/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- SPLASH SCREEN (pantalla de inicio)-->
+      <div id="splash-screen" class="container">
+        <!--<img src="" width="800" height="600" alt="logo">-->
+        <button id="start-btn">LET'S SWIM!</button>
+      </div>
+
+      <!-- GAME SCREEN -->
+      <canvas id="my-canvas" width="850" height="600"></canvas>
+
+      <!-- GAME OVER SCREEN (pantalla final) -->
+      <div id="gameover-screen" class="container">
+        <img
+          src="images/gameover/image2.jpg"
+          width="800"
+          height="600"
+          alt="logo"
+        />
+        <button id="restart-btn">SWIM AGAIN!</button>
+      </div>
+    </div>
+
+    <script src="./javascript/Submarinista.js"></script>
+    <script src="./javascript/medusas.js"></script>
+    <script src="./javascript/oxygen.js"></script>
+
+    <script src="./javascript/Game.js"></script>
+    <script src="./javascript/main.js"></script>
+  </body>
 </html>
