@@ -16,7 +16,8 @@ class Game {
     //3. las medusas
     //this.medusa = new Medusas()
     this.medusaArr = [];
-
+    
+    this.isGameOn = true;
     //4.la bombona
     //this.oxigen = new Oxygen() 
 
@@ -37,7 +38,34 @@ class Game {
 
   //4.accion de que el contador augmente
   //5.colisiones del buzo contra las medusas
+checkCollisionSubVsMedusa = () => {
+     
+  this.medusaArr.forEach((eachMedusa) => {
+    if (
+      eachMedusa.x < this.submarinista.x + this.submarinista.w - 30 &&
+      eachMedusa.x + eachMedusa.w > this.submarinista.x + 20 &&
+      eachMedusa.y < this.submarinista.y + this.submarinista.h - 30 &&
+      eachMedusa.h + eachMedusa.y > this.submarinista.y + 20
+    ) {
+      // Collision detected!
+      
+      this.gameOver()
+    } 
+  })
+
+}
+
   //6.se termina el juego
+
+  gameOver = () => {
+    //detener el juego 
+    this.isGameOn = false;
+    //ocultar el canvas
+    canvas.style.display = "none"
+    //mostramos pantalla final
+    gameOverScreenDOM.style.display = "flex"
+  }
+
   //7.pausar el juego?
   //9. que el buzo al tocar la bombona tenga una vida extra(que no le afecte el tocar una medusa)
   //10.bonus ayuda que elimina el 50% de las medusas en pantalla
@@ -60,6 +88,8 @@ class Game {
       eachMedusa.medusasCollisionCanvas();
     });
     
+   this.checkCollisionSubVsMedusa()
+
     
     //this.submarinistaCollisionCanvas();
     // queremos dibujar todas las medusas del array y mover todas las del array
@@ -80,6 +110,8 @@ class Game {
     });
 
     //4.Recursion
-    requestAnimationFrame(this.gameLoop);
-  };
+    if( this.isGameOn === true){
+    requestAnimationFrame(this.gameLoop)
+    }
+  }
 }

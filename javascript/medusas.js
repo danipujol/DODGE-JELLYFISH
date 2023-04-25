@@ -3,12 +3,12 @@ class Medusas {
     // propiedades de las medusas
 
     this.img = new Image();
-    this.img.src = "images/medusa/medusatop2.png";
+    this.img.src = "images/medusa/prova5.png";
 
     this.x = Math.random() * canvas.width;
     this.y = Math.random() * canvas.height;
-    this.w = 120; //ancho
-    this.h = 120; //alto
+    this.w = 45; //ancho
+    this.h = 55; //alto
     this.speed = 2;
 
     this.isJellyMovingRight = false;
@@ -44,7 +44,7 @@ class Medusas {
     //2.que las medusas revoten por el canvas sin salirse(juego de la pelota)
     //quiero que esta verificacion se haga siempre
     // con eso estamos haciendo que la medusa rebote en el limite derecho del canvas
-    if (this.x > canvas.width) {
+    if (this.x + this.w > canvas.width) {
       //console.log("la medusa llegó al final derecha");
       // como hacemos en este punto que la medusa se mueva hacia la izquierda?
       // determinar que la medusa ha cambiado su direccion
@@ -58,7 +58,7 @@ class Medusas {
       //llegó arriba
       this.isJellyMovingDown = true;
       this.isJellyMovingUp = false;
-    } else if (this.y > canvas.height) {
+    } else if (this.y + this.h > canvas.height) {
       //llegó abajo
       this.isJellyMovingUp = true;
       this.isJellyMovingDown = false;

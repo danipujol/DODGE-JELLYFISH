@@ -2,11 +2,11 @@ class Submarinista {
   constructor() {
     //las propiedades del submarinista
     this.img = new Image();
-    this.img.src = "images/submarinista/submarinistatop.png";
+    this.img.src = "images/submarinista/submarinistatop15.png";
     this.x = 250; // la posicion en X
     this.y = 10; // la posicion en Y
-    this.w = 95; // el ancho del submarinista
-    this.h = 95; //alto del submarinista
+    this.w = 65; // el ancho del submarinista
+    this.h = 85; //alto del submarinista
     this.speed = 20; // velocidad del movimiento al subir
 
     this.isSubmarinistaMovingRight = true;
