@@ -29,6 +29,9 @@ class Game {
     }, 15000);
 
     //5.el contador
+    this.score = 0;
+
+
     //6.boton de pausa?
   }
 
@@ -40,6 +43,8 @@ class Game {
       // si hay menos de 15 medusas y si el numero aleatorio entre 0-1 es 0.002 aparezcan
       let newMedusa = new Medusas();
       this.medusaArr.push(newMedusa);
+
+      this.score ++
     }
   };
 
@@ -53,9 +58,7 @@ class Game {
         eachMedusa.y < this.submarinista.y + this.submarinista.h - 30 &&
         eachMedusa.h + eachMedusa.y > this.submarinista.y + 20
       ) {
-        if (!this.isImmune) {
-          this.gameOver();
-        }
+          this.gameOver();  
       }
     });
   };
@@ -100,6 +103,11 @@ class Game {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   };
 
+  drawScore = () => {
+    ctx.font = "50px Comic Sans MS"
+    ctx.strokeText(this.score, 425 , 60)
+  }
+
   gameLoop = () => {
     console.log("executant recursio");
 
@@ -132,7 +140,7 @@ class Game {
     this.medusaArr.forEach((eachMedusa) => {
       eachMedusa.draw();
     });
-
+   this.drawScore()
     //4.Recursion
     if (this.isGameOn === true) {
       requestAnimationFrame(this.gameLoop);
