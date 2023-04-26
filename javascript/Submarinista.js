@@ -13,6 +13,7 @@ class Submarinista {
     this.isSubmarinistaMovingLeft = true;
     this.isSubmarinistaMovingUp = true;
     this.isSubmarinistaMovingDown = true;
+
   }
 
   //las accions del submarinista
