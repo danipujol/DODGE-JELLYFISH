@@ -1,4 +1,4 @@
-// *GLOBAL VARIABLES
+//*GLOBAL VARIABLES
 
 const splashScreenDOM = document.querySelector("#splash-screen");
 const gameOverScreenDOM = document.querySelector("#gameover-screen");
@@ -10,10 +10,8 @@ const ctx = canvas.getContext("2d");
 
 let gameObj;
 
-// * STATE MANAGEMENT FUNCTIONS
+//*STATE MANAGEMENT FUNCTIONS
 const startGame = () => {
-  
-
   splashScreenDOM.style.display = "none";
   canvas.style.display = "block";
 

@@ -1,11 +1,9 @@
 class Game {
   constructor() {
     this.background = new Image();
-    this.background.src =
-      "images/fondo marino/fontoFinal.png";
+    this.background.src = "images/fondo marino/fontoFinal.png";
 
     this.submarinista = new Submarinista();
-    
 
     this.medusaArr = [];
 
@@ -35,13 +33,10 @@ class Game {
   }
 
   musica = () => {
-    let audio = new Audio(
-    "audio/GLUGLUTEK - Sota l'aigua (tekno).mp3"
-    );
+    let audio = new Audio("audio/GLUGLUTEK - Sota l'aigua (tekno).mp3");
+    audio.loop = true;
     audio.play();
     audio.volume = 0.1;
-
-
   };
 
   medusasAparecen = () => {
@@ -92,7 +87,7 @@ class Game {
       this.submarinista.y + this.submarinista.h > this.bomb.y + 15
     ) {
       this.medusaArr.push(new Medusas(), new Medusas(), new Medusas());
-      this.score +=3;
+      this.score += 3;
       this.bomb = undefined;
     }
   };
@@ -119,8 +114,6 @@ class Game {
   };
 
   gameLoop = () => {
-    
-
     this.clearCanvas();
 
     this.medusasAparecen();
