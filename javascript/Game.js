@@ -1,23 +1,16 @@
 class Game {
   constructor() {
-    //agregamos todas las propiedades de Game-> que son todos los elementos que existe en el juego
-
-    //1.el fondo
     this.background = new Image();
     this.background.src =
       "images/fondo marino/istockphoto-1155277407-612x612.jpg";
 
-    //2.el submarinista
     this.submarinista = new Submarinista();
     console.log(this.submarinista);
 
-
-    //3. las medusas
-    //this.medusa = new Medusas()
     this.medusaArr = [];
 
     this.isGameOn = true;
-    //4.la bombona
+
     this.oxigen = undefined;
 
     setInterval(() => {
@@ -25,31 +18,31 @@ class Game {
 
       setTimeout(() => {
         this.oxigen = undefined;
-      }, 2500);
+      }, 3000);
     }, 15000);
 
-    //5.el contador
+    this.bomb = undefined;
+
+    setInterval(() => {
+      this.bomb = new Bomb();
+
+      setTimeout(() => {
+        this.bomb = undefined;
+      }, 2000);
+    }, 5000);
+
     this.score = 0;
-
-
-    //6.boton de pausa?
   }
 
-  //metodos de Game -> todas las acciones que se realizan en el juego
-
   medusasAparecen = () => {
-    // metodo que determina cuando deberia aparecer una medusa
     if (this.medusaArr.length < 15 && Math.random() < 0.0035) {
-      // si hay menos de 15 medusas y si el numero aleatorio entre 0-1 es 0.002 aparezcan
       let newMedusa = new Medusas();
       this.medusaArr.push(newMedusa);
 
-      this.score ++
+      this.score++;
     }
   };
 
-  //4.accion de que el contador augmente
-  //5.colisiones del buzo contra las medusas
   checkCollisionSubVsMedusa = () => {
     this.medusaArr.forEach((eachMedusa) => {
       if (
@@ -58,7 +51,7 @@ class Game {
         eachMedusa.y < this.submarinista.y + this.submarinista.h - 30 &&
         eachMedusa.h + eachMedusa.y > this.submarinista.y + 20
       ) {
-          this.gameOver();  
+        this.gameOver();
       }
     });
   };
@@ -67,33 +60,40 @@ class Game {
     if (
       this.oxigen &&
       this.submarinista.x < this.oxigen.x + this.oxigen.w - 15 &&
-      this.submarinista.x + this.submarinista.w > this.oxigen.x + 15&&
-      this.submarinista.y < this.oxigen.y + this.oxigen.h - 15 && 
+      this.submarinista.x + this.submarinista.w > this.oxigen.x + 15 &&
+      this.submarinista.y < this.oxigen.y + this.oxigen.h - 15 &&
       this.submarinista.y + this.submarinista.h > this.oxigen.y + 15
     ) {
-     
-      this.medusaArr = this.medusaArr.slice(0, Math.floor(this.medusaArr.length/2));
-      
+      this.medusaArr = this.medusaArr.slice(
+        0,
+        Math.floor(this.medusaArr.length / 2)
+      );
+
       this.oxigen = undefined;
     }
   };
-  
 
-  //6.se termina el juego
+  chechCollisionSuvVsBomb = () => {
+    if (
+      this.bomb &&
+      this.submarinista.x < this.bomb.x + this.bomb.w - 15 &&
+      this.submarinista.x + this.submarinista.w > this.bomb.x + 15 &&
+      this.submarinista.y < this.bomb.y + this.bomb.h - 15 &&
+      this.submarinista.y + this.submarinista.h > this.bomb.y + 15
+    ) {
+      this.medusaArr.push(new Medusas(), new Medusas(), new Medusas());
 
-  gameOver = () => {
-    //detener el juego
-    this.isGameOn = false;
-    //ocultar el canvas
-    canvas.style.display = "none";
-    //mostramos pantalla final
-    gameOverScreenDOM.style.display = "flex";
+      this.bomb = undefined;
+    }
   };
 
-  //7.pausar el juego?
-  //9. que el buzo al tocar la bombona tenga una vida extra(que no le afecte el tocar una medusa)
+  gameOver = () => {
+    this.isGameOn = false;
 
-  //10.bonus ayuda que elimina el 50% de las medusas en pantalla
+    canvas.style.display = "none";
+
+    gameOverScreenDOM.style.display = "flex";
+  };
 
   drawBackground = () => {
     ctx.drawImage(this.background, 0, 0, canvas.clientWidth, canvas.height);
@@ -104,17 +104,15 @@ class Game {
   };
 
   drawScore = () => {
-    ctx.font = "50px Comic Sans MS"
-    ctx.strokeText(this.score, 425 , 60)
-  }
+    ctx.font = "50px Comic Sans MS";
+    ctx.strokeText(this.score, 425, 60);
+  };
 
   gameLoop = () => {
     console.log("executant recursio");
 
-    //1.limpieza del canvas
     this.clearCanvas();
 
-    // 2.acciones y movimientos de los elementos
     this.medusasAparecen();
     this.medusaArr.forEach((eachMedusa) => {
       eachMedusa.move();
@@ -127,21 +125,24 @@ class Game {
 
     this.checkCollisionSuvVsOxigen();
 
-    //3. dibuixat dels elements
+    this.chechCollisionSuvVsBomb();
+
     this.drawBackground();
     this.submarinista.draw();
 
-    // queremos que this.oxigen no sea undefined this.oxigen.draw() se ejecute
     if (this.oxigen != undefined) {
       this.oxigen.draw();
     }
 
-    //this.medusa.draw()
+    if (this.bomb != undefined) {
+      this.bomb.draw();
+    }
+
     this.medusaArr.forEach((eachMedusa) => {
       eachMedusa.draw();
     });
-   this.drawScore()
-    //4.Recursion
+    this.drawScore();
+
     if (this.isGameOn === true) {
       requestAnimationFrame(this.gameLoop);
     }

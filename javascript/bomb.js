@@ -1,7 +1,7 @@
-class Oxygen {
+class Bomb {
   constructor() {
     this.img = new Image();
-    this.img.src = "images/bombonaoxigeno/top10.png";
+    this.img.src = "images/bomb/bomb.png";
     this.w = 50;
     this.h = 50;
 
