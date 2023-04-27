@@ -2,10 +2,10 @@ class Game {
   constructor() {
     this.background = new Image();
     this.background.src =
-      "images/fondo marino/istockphoto-1155277407-612x612.jpg";
+      "images/fondo marino/fontoFinal.png";
 
     this.submarinista = new Submarinista();
-    console.log(this.submarinista);
+    
 
     this.medusaArr = [];
 
@@ -33,6 +33,16 @@ class Game {
 
     this.score = 0;
   }
+
+  musica = () => {
+    let audio = new Audio(
+    "audio/GLUGLUTEK - Sota l'aigua (tekno).mp3"
+    );
+    audio.play();
+    audio.volume = 0.1;
+
+
+  };
 
   medusasAparecen = () => {
     if (this.medusaArr.length < 15 && Math.random() < 0.0035) {
@@ -82,7 +92,7 @@ class Game {
       this.submarinista.y + this.submarinista.h > this.bomb.y + 15
     ) {
       this.medusaArr.push(new Medusas(), new Medusas(), new Medusas());
-
+      this.score +=3;
       this.bomb = undefined;
     }
   };
@@ -109,7 +119,7 @@ class Game {
   };
 
   gameLoop = () => {
-    console.log("executant recursio");
+    
 
     this.clearCanvas();
 

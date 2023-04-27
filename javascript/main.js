@@ -12,13 +12,13 @@ let gameObj;
 
 // * STATE MANAGEMENT FUNCTIONS
 const startGame = () => {
-  console.log("intentando iniciar");
+  
 
   splashScreenDOM.style.display = "none";
   canvas.style.display = "block";
 
   gameObj = new Game();
-  console.log(gameObj);
+  gameObj.musica();
 
   gameObj.gameLoop();
 };

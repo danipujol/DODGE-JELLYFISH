@@ -8,7 +8,7 @@
 }
 
 #splash-screen {
-  background-image: url("../images/portada/PORTADA3.jpg");
+  background-image: url("../images/portada/portadaFinal.png");
   background-repeat: no-repeat;
   background-size: cover;
   height: 600px;
@@ -22,6 +22,8 @@
   font-size: 30px;
   /*margin-top: 5%;*/
   border-radius: 20px;
+  border: none;
+  opacity: 0.5;
 }
 
 button {
@@ -39,7 +41,7 @@ button {
 }
 
 #gameover-screen{
-    background-image: url("../images/gameover/YOUDROWNED.jpg");
+    background-image: url("../images/gameover/gameoverfinal.png");
     background-repeat: no-repeat;
     background-size: cover;
     height: 600px;
